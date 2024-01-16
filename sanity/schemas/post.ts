@@ -1,7 +1,8 @@
+import {Rule} from 'sanity'
 export const post = {
-  name: 'blog',
+  name: 'post',
   type: 'document',
-  title: 'Blog',
+  title: 'Post',
   fields: [
     {
       name: 'title',
@@ -26,6 +27,8 @@ export const post = {
       name: 'description',
       type: 'text',
       title: 'Description',
+      validation: (Rule: Rule) =>
+        Rule.max(200).warning('Description should not exceed 200 characters.'),
     },
     {
       name: 'content',
@@ -48,6 +51,8 @@ export const post = {
     },
     {
       name: 'author',
+      title: 'Author',
+      type: 'string',
     },
     {
       name: 'tags',
