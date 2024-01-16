@@ -8,6 +8,7 @@ async function getData() {
 }
 `;
 	const data = await client.fetch(query);
+	console.log(data);
 	return data;
 }
 
@@ -16,8 +17,8 @@ export default async function Home() {
 
 	return (
 		<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 m-5">
-			{data.map((post, index) => (
-				<CardComponent key={index} post={post} />
+			{data.map((post) => (
+				<CardComponent key={post.currentSlug} post={post} />
 			))}
 		</div>
 	);
