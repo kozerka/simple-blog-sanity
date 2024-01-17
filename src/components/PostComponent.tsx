@@ -9,6 +9,24 @@ interface PostProps {
 	data: BlogPost;
 }
 
+const myPortableTextComponent = {
+	types: {
+		image: ({ value }: any) => {
+			return (
+				<div className="relative overflow-hidden rounded-lg">
+					<Image
+						src={urlFor(value).url()}
+						alt={value.alt}
+						width={900}
+						height={500}
+						className="object-cover"
+					/>
+				</div>
+			);
+		},
+	},
+};
+
 const PostComponent: React.FC<PostProps> = ({ data }) => {
 	const formatDate = (dateString: string) => {
 		const options: Intl.DateTimeFormatOptions = {
@@ -43,7 +61,7 @@ const PostComponent: React.FC<PostProps> = ({ data }) => {
 				<div className="absolute bottom-0 right-0 flex p-2 bg-red-500 rounded-tl-lg">
 					{data.tags?.map((tag: any, index: number) => (
 						<span
-							key={index}
+							key={data._id}
 							className="text-xs text-white mx-4 flex items-center"
 						>
 							<Tag size={20} className="mr-1" /> {tag.name}
@@ -53,7 +71,10 @@ const PostComponent: React.FC<PostProps> = ({ data }) => {
 			</div>
 
 			<div className="mt-8 prose dark:prose-invert w-full max-w-none prose-headings:font-semibold prose-li:marker:text-primary">
-				<PortableText value={data.content} />
+				<PortableText
+					value={data.content}
+					components={myPortableTextComponent}
+				/>
 			</div>
 
 			<p className="text-gray-600 dark:text-gray-300 text-sm mt-2">

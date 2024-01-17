@@ -8,6 +8,7 @@ export const post = {
       name: 'title',
       title: 'Title of blog post',
       type: 'string',
+      validation: (Rule: Rule) => Rule.required().error('Title is required'),
     },
     {
       name: 'slug',
@@ -17,6 +18,7 @@ export const post = {
         source: 'title',
         maxLength: 96,
       },
+      validation: (Rule: Rule) => Rule.required().error('Slug is required'),
     },
     {
       name: 'titleImage',
@@ -48,6 +50,7 @@ export const post = {
       name: 'publishedAt',
       title: 'Published at',
       type: 'datetime',
+      initialValue: () => new Date().toISOString(),
     },
     {
       name: 'author',
