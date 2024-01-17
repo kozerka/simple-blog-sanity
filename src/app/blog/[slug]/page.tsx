@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import PostComponent from '@/components/PostComponent';
 
+export const revalidate = 30;
+
 async function getData(slug: string) {
 	const query = `*[_type=='post' && slug.current == '${slug}']{
     title, 
