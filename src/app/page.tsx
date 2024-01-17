@@ -2,6 +2,7 @@ import { BlogCard } from '@/lib/interface';
 import { client } from '@/lib/sanity';
 import CardComponent from '@/components/CardComponent';
 import Header from '@/components/Header';
+import Tags from '@/components/Tags';
 
 export const revalidate = 3600;
 async function getData() {
@@ -22,6 +23,7 @@ export default async function Home() {
 				title="Welcome to  Simple Blog"
 				subtitle="A blog built to practice Next.js and Sanity.io integration"
 			/>
+			<Tags />
 			<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 m-5">
 				{data?.length > 0 &&
 					data?.map((post) => <CardComponent key={post?._id} post={post} />)}

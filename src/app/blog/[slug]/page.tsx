@@ -9,17 +9,8 @@ export const revalidate = 30;
 
 async function getData(slug: string) {
 	const query = `*[_type=='post' && slug.current == '${slug}']{
-    title, 
-    description, 
-    'currentSlug':slug.current, 
-    titleImage, 
-    content, 
-    publishedAt, 
-    author, 
-    "tags": tags[]->{
-        name, 
-        'slug': slug.current,
-		_id
+    {title, description, 'currentSlug':slug.current, titleImage, tags[]->{_id, slug, name}
+}
     },
 	_id
 }[0]`;

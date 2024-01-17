@@ -2,7 +2,7 @@ import React from 'react';
 
 interface HeaderProps {
 	title: string;
-	subtitle: string;
+	subtitle?: string;
 }
 
 const Header: React.FC<HeaderProps> = ({ title = '', subtitle = '' }) => {
