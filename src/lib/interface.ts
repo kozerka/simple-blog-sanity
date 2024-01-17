@@ -3,6 +3,8 @@ export interface BlogCard {
 	description: string;
 	currentSlug: string;
 	titleImage: any;
+	_id: string;
+	tags: Array<Tag>;
 }
 export interface BlogPost {
 	title: string;
@@ -12,5 +14,19 @@ export interface BlogPost {
 	content: any;
 	publishedAt: string;
 	author: string;
-	tags: any;
+	tags: Array<Tag>;
+	_id: string;
+}
+
+export interface Tag {
+	name: string;
+	slug: { current: string };
+	_id: string;
+	postCount?: number;
+}
+
+export interface Params {
+	params: {
+		slug: string;
+	};
 }
