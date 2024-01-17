@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import PostComponent from '@/components/PostComponent';
 
-export const revalidate = 3600;
+export const revalidate = 30;
 
 async function getData(slug: string) {
 	const query = `*[_type=='post' && slug.current == '${slug}']{
@@ -18,8 +18,10 @@ async function getData(slug: string) {
     author, 
     "tags": tags[]->{
         name, 
-        'slug': slug.current
-    }
+        'slug': slug.current,
+		_id
+    },
+	_id
 }[0]`;
 
 	const data = await client.fetch(query);
