@@ -26,7 +26,9 @@ export default async function Home() {
 			<Tags />
 			<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 m-5">
 				{data?.length > 0 &&
-					data?.map((post) => <CardComponent key={post?._id} post={post} />)}
+					data?.map((post) => (
+						<CardComponent key={post?.currentSlug} post={post} />
+					))}
 			</div>
 		</>
 	);
