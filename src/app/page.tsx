@@ -3,6 +3,8 @@ import { client } from '@/lib/sanity';
 import CardComponent from '@/components/CardComponent';
 import Header from '@/components/Header';
 import Tags from '@/components/Tags';
+import RecentPosts from "@/components/RecentPosts";
+import PostsGrid from "@/components/PostGrid";
 
 export const revalidate = 3600;
 async function getData() {
@@ -18,18 +20,14 @@ export default async function Home() {
 	const data: BlogCard[] = await getData();
 
 	return (
-		<>
-			<Header
-				title="Welcome to  Simple Blog"
-				subtitle="A blog built to practice Next.js and Sanity.io integration"
-			/>
-			<Tags />
-			<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 m-5">
-				{data?.length > 0 &&
-					data?.map((post) => (
-						<CardComponent key={post?.currentSlug} post={post} />
-					))}
-			</div>
-		</>
-	);
+    <>
+      <Header
+        title="Welcome to  Simple Blog"
+        subtitle="A blog built to practice Next.js and Sanity.io integration"
+      />
+      <Tags />
+      <RecentPosts />
+      <PostsGrid posts={data} />
+    </>
+  );
 }

@@ -14,6 +14,8 @@ async function getData(slug: string) {
     'currentSlug':slug.current, 
     titleImage, 
 	content,
+	author,
+	publishedAt,
     tags[]->{_id, slug, name}
 }[0]`;
 
